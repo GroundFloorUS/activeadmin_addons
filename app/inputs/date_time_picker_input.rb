@@ -32,7 +32,8 @@ class DateTimePickerInput < ActiveAdminAddons::InputBase
     v = input_value
 
     if v.is_a?(Time)
-      return DateTime.new(v.year, v.month, v.day, v.hour, v.min, v.sec).strftime(
+      offset = v.formatted_offset(false, '0')
+      return DateTime.new(v.year, v.month, v.day, v.hour, v.min, v.sec, offset).strftime(
         ActiveadminAddons.datetime_picker_input_format
       )
     end
